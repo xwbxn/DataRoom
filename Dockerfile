@@ -11,7 +11,10 @@ COPY doc/docker/*.yml /app/dataRoom/config/
 RUN mkdir -p /data
 # 设置工作目录
 WORKDIR /app/dataRoom
+# 端口同步
+ADD doc/docker/wait /wait
+RUN chmod +x /wait
 # 添加环境变量
 ENV RUN_ENV=docker
-ENTRYPOINT ["sh", "-c", "java -jar -Duser.timezone=GMT+8 dataroom-server.jar --spring.profiles.active=docker"]
+ENTRYPOINT ["sh", "-c", "/wait && java -jar -Duser.timezone=GMT+8 dataroom-server.jar --spring.profiles.active=docker"]
 
