@@ -1,31 +1,12 @@
 <template>
   <div class="big-screen-home-wrap">
     <header class="big-screen-home-wrap-top">
-      <div class="logo-title">
-        <img
-          class="logo"
-          :src="logo"
-        >
-        <span>{{ title }}</span>
-      </div>
-
       <div class="big-screen-nav-container">
         <Nav
           :navs="tabList"
           @change="changeTab"
         />
       </div>
-      <a
-        v-if="giteeSvg && giteeHref"
-        class="fork-me-on-gitee"
-        :href="giteeHref"
-        target="_blank"
-      >
-        <img
-          :src="giteeSvg"
-          alt="Fork me on Gitee"
-        >
-      </a>
     </header>
     <div class="big-screen-router-view-wrap">
       <keep-alive>
@@ -158,9 +139,9 @@ export default {
     position: fixed;
     top: 0;
     width: 100%;
-    height: 150px;
+    height: 40px;
     background-image: url('./images/nav_img.png');
-    background-size: 100% 150px;
+    background-size: 100% 40px;
     background-color: #0D0F12;
     background-position: center right;
 
@@ -193,11 +174,11 @@ export default {
 
   .big-screen-router-view-wrap {
     position: absolute;
-    top: 150px;
+    top: 40px;
     overflow: hidden;
     // padding-top: 16px;
     width: 100%;
-    height: calc(100vh - 150px);
+    height: calc(100vh - 40px);
     background-color: var(--bs-background-1);
     box-sizing: border-box;
     padding-top: 16px;

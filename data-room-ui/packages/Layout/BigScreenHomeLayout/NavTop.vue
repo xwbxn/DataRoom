@@ -67,7 +67,7 @@ export default {
   top: 30px;
   position: sticky;
   width: 100%;
-  margin-top: 109px;
+  // margin-top: 109px;
   min-width: 1024px;
   user-select: none;
 

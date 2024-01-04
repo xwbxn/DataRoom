@@ -10,7 +10,7 @@ const webpack = require('webpack')
 function resolve (dir) {
   return path.join(__dirname, dir)
 }
-const publicPath = process.env.VUE_APP_HISTORY === 'y' ? process.env.VUE_APP_BASE + '/' : ''
+const publicPath = process.env.VUE_APP_BASE
 const JS_CDN = [
   publicPath + 'static/libs/vuex/vuex.min.js',
   publicPath + 'static/libs/vue-router/vue-router.min.js'
@@ -40,8 +40,7 @@ module.exports = {
       chunks: 'all'
     }
   },
-  publicPath:
-    process.env.VUE_APP_HISTORY === 'y' ? process.env.VUE_APP_BASE : './',
+  publicPath: 'dataroom',
   outputDir: 'dataRoomUi',
   assetsDir: 'static',
   lintOnSave: false,

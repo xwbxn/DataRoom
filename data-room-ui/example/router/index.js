@@ -11,7 +11,8 @@ export const constantRoutes = []
 
 const createRouter = () => new Router({
   mode: process.env.VUE_APP_HISTORY === 'y' ? 'history' : null,
-  base: process.env.VUE_APP_HISTORY === 'y' ? process.env.VUE_APP_BASE : null,
+  // base: process.env.VUE_APP_HISTORY === 'y' ? process.env.VUE_APP_BASE : null,
+  base: '/dataroom',
   scrollBehavior: () => ({ y: 0 }),
   routes: baseRoutes
 })

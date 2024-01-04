@@ -1,7 +1,7 @@
 window.ENV = 'production'
 var productionConfig = {
-  baseUrl: 'http://gcpaas.gccloud.com/bigScreenServer',
-  fileUrlPrefix: 'http://gcpaas.gccloud.com/bigScreenServer' + '/static'
+  baseUrl: '/dataroom/bigScreenServer',
+  fileUrlPrefix: '/dataroom/bigScreenServer/static'
 
 }
 // 必须的

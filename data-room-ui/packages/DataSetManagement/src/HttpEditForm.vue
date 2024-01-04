@@ -419,6 +419,12 @@
                     class="code"
                   />
                   <div class="bs-codemirror-bottom-text">
+                    prometheus快捷设置:
+                    <el-button type="text" @click="setRange(5)">5分钟</el-button>
+                    <el-button type="text" @click="setRange(15)">15分钟</el-button>
+                    <el-button type="text" @click="setRange(30)">半小时</el-button>
+                    <el-button type="text" @click="setRange(60)">1小时</el-button>
+                    <el-button type="text" @click="setRange(600)">6小时</el-button><br>
                     <strong>请求脚本设置规则： 请求脚本已经内置参数req，可参考下面的示例进行配置:
                       <br> 如修改请求地址中对应参数&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
                         style="color: red;"
@@ -454,7 +460,8 @@
                     v-if="dataForm.config.requestType === 'frontend'"
                     class="bs-codemirror-bottom-text"
                   >
-                    <strong>响应脚本设置规则： 接口返回数据已经内置到参数resp中，可直接使用，但是必须要返回设置后的数据。<br> 例如：<span style="color: red;">return
+                    <strong>
+                      <el-button type="text" @click="setPrometheus">点击设置Prometheus</el-button><br>响应脚本设置规则： 接口返回数据已经内置到参数resp中，可直接使用，但是必须要返回设置后的数据。<br> 例如：<span style="color: red;">return
                       resp.data</span>
                     </strong>
                   </div>
@@ -1242,6 +1249,12 @@ export default {
     },
     openNewWindow (url) {
       window.open(url, '_blank')
+    },
+    setPrometheus() {
+      this.dataForm.config.responseScript = 'const data = [];\nif (resp.data.resultType === "vector") {\n  resp.data.result.map((m) => {\n    data.push({\n      ...m.metric,\n      time: m.value[0],\n      value: parseFloat(m.value[1]),\n    });\n  });\n}\nif (resp.data.resultType === "matrix") {\n  resp.data.result.map((m) => {\n    m.values.map((v) => {\n      data.push({\n        ...m.metric,\n        time: v[0],\n        value: parseFloat(v[1]),\n      });\n    });\n  });\n}\nreturn data;'
+    },
+    setRange(range) {
+      this.dataForm.config.requestScript = `const now = Math.ceil(Date.now() / 1000)\nconst duration = ${range} * 60\nconst start = now - duration\nconst step = Math.ceil(duration / 240)\nreq.params.start = start\nreq.params.end = now\nreq.params.step = step < 1 ? 1 : step`
     }
   }
 }
