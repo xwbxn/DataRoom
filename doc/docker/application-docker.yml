@@ -1,38 +1,48 @@
+# 工程访问配置
 server:
   port: 8081
   servlet:
-    context-path:
+    context-path: /bigScreenServer
+
+# spring环境配置
 spring:
-  web:
-    resources:
-      static-locations: classpath:/static/,classpath:/META-INF/resources/,classpath:/META-INF/resources/webjars/,file:${gc.starter.file.basePath},file:${gc.starter.file.uiPath}
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    deserialization:
+      # 当实体中没有属性的setter方法时是否抛出异常
+      FAIL_ON_UNKNOWN_PROPERTIES: false
+      # 字符串转允许List，否则导致 @RequestBody List<T> list 类型无法解析
+      ACCEPT_SINGLE_VALUE_AS_ARRAY: true
+  resources:
+    # 自springboot 2.5.5之后，该属性已经被废弃，使用web.resources.static-locations代替
+    static-locations: classpath:/static/,classpath:/META-INF/resources/,classpath:/META-INF/resources/webjars/,file:${gc.starter.file.basePath}
+  # 静态资源配置
   mvc:
     throw-exception-if-no-handler-found: true
     # 静态资源访问接口前缀
-    static-path-pattern: /dataroom/**
-  servlet:
-    multipart:
-      # 配置上传下载文件的最大值
-      max-file-size: 500MB
-      max-request-size: 500MB
-  datasource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    driverClassName: org.h2.Driver
-    # 文件模式，保存到当前目录下的h2DBData.mv.db
-    url: jdbc:h2:file:/db/h2DBData # jdbc:h2:mem:test
-    username: root
-    password: ${DB_PASSWORD:123456}
-  sql:
-    init:
-      schema-locations: classpath:init-h2.sql
-      mode: always
+    static-path-pattern: /static/**
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
+  web:
+    resources:
+      static-locations: classpath:/static/,classpath:/META-INF/resources/,classpath:/META-INF/resources/webjars/,file:${gc.starter.file.basePath}
+
+
+mybatis-plus:
+  # mybatis plus xml配置文件扫描，多个通过分号隔开
+  mapper-locations: classpath*:mapper/**/*.xml
+  # typeHandler扫描路径，多个通过分号隔开
+  type-handlers-package: com.gccloud
+  global-config:
+    db-config:
+      #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"唯一ID";
+      id-type: AUTO
+
 gc:
   starter:
     file:
       # 一个存储文件的绝对路径，需要有写入权限
       basePath: /data
-      # 启动服务的访问地址
-      urlPrefix: http://${IP:127.0.0.1}:${PORT:${server.port}}${server.servlet.context-path}/dataroom
-      # docker启动时，前端包所在的路径
-      uiPath: /app/dataRoom/ui
-
+      # 文件资源访问前缀，一般修改ip即可
+      urlPrefix: ''
