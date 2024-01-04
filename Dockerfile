@@ -6,7 +6,7 @@ COPY DataRoom/dataroom-server/target/dataroom-server.jar /app/dataRoom
 # 创建配置文件目录
 RUN mkdir -p /app/dataRoom/config
 # 复制配置文件到运行目录
-COPY doc/docker/*.yml /app/dataRoom/config
+COPY doc/docker/*.yml /app/dataRoom/config/
 # 创建资源保存目录
 RUN mkdir -p /data
 # 设置工作目录
