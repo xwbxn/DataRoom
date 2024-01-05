@@ -16,5 +16,6 @@ ADD doc/docker/wait /wait
 RUN chmod +x /wait
 # 添加环境变量
 ENV RUN_ENV=docker
+EXPOSE 8001
 ENTRYPOINT ["sh", "-c", "/wait && java -jar -Duser.timezone=GMT+8 dataroom-server.jar --spring.profiles.active=docker"]
 
