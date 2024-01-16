@@ -264,7 +264,7 @@ export default {
         this.mapList = res
         this.searchLoading = false
         if (!this.tipped && this.mapList.length === 0) {
-          this.tip()
+          // this.tip()
         }
       }).catch(err => {
         this.searchLoading = false

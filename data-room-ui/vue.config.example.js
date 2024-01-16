@@ -40,7 +40,7 @@ module.exports = {
       chunks: 'all'
     }
   },
-  publicPath: 'dataroom',
+  publicPath: process.env.NODE_ENV === 'production' ? 'dataroom' : '',
   outputDir: 'dataRoomUi',
   assetsDir: 'static',
   lintOnSave: false,

@@ -13,12 +13,12 @@
                 {{ !isEdit ? '脚本数据集详情' : dataForm.id ? '编辑脚本数据集' : '新增脚本数据集' }}
               </div>
               <div class="page-header-right">
-                <el-button
+                <!-- <el-button
                   class="bs-el-button-default"
                   @click="openNewWindow('https://www.yuque.com/chuinixiongkou/bigscreen/groovy_dataset')"
                 >
                   帮助
-                </el-button>
+                </el-button> -->
                 <el-button
                   v-if="isEdit"
                   type="primary"

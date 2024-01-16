@@ -13,12 +13,12 @@
                 {{ !isEdit ? '原始数据集详情' : dataForm.id ? '编辑原始数据集' : '新增原始数据集' }}
               </div>
               <div class="page-header-right">
-                <el-button
+                <!-- <el-button
                   class="bs-el-button-default"
                   @click="openNewWindow('https://www.yuque.com/chuinixiongkou/bigscreen/ry3ggnrts7q3ro1g')"
                 >
                   帮助
-                </el-button>
+                </el-button> -->
                 <el-button
                   v-if="isEdit"
                   type="primary"

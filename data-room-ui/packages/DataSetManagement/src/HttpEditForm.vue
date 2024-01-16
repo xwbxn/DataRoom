@@ -12,12 +12,12 @@
                 {{ !isEdit ? 'HTTP数据集详情' : dataForm.id ? '编辑HTTP数据集' : '新增HTTP数据集' }}
               </div>
               <div class="page-header-right">
-                <el-button
+                <!-- <el-button
                   class="bs-el-button-default"
                   @click="openNewWindow('https://www.yuque.com/chuinixiongkou/bigscreen/htag6vmt5oin15ib')"
                 >
                   帮助
-                </el-button>
+                </el-button> -->
                 <el-button
                   v-if="isEdit"
                   type="primary"

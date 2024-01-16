@@ -40,6 +40,15 @@ public class ScreenScrollBoardChart extends Chart {
         @ApiModelProperty(notes = "偶数行背景色")
         private String evenRowBGC;
 
+        @ApiModelProperty(notes = "高亮字段")
+        private String highlightKey;
+
+        @ApiModelProperty(notes = "高亮条件值")
+        private String highlightValue;
+
+        @ApiModelProperty(notes = "高亮颜色")
+        private String highlightColor;
+
         @ApiModelProperty(notes = "滚动间隔时间")
         private Integer waitTime;
 

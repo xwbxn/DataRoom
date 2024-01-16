@@ -54,7 +54,11 @@ export default {
     rowClick (row) {
       const origData = this.config.option.origData
       if (row && row.rowIndex && this.config && this.config.option && origData && origData.length){
-        this.linkage(origData [row.rowIndex])
+        const origRow = origData[row.rowIndex]
+        this.linkage(origRow)
+        if(origRow.id) {
+          window.open(`/xh/monitor/add?type=monitor&id=${origRow.id}&asset_id=${origRow.id}&action=asset&prom=1`)
+        }
       }
     },
     dataFormatting (config, data) {
@@ -72,9 +76,15 @@ export default {
         }
         data.data.forEach((item) => {
           const arr = []
-          header.forEach((x, index) => {
-            arr.push(item[key[index]])
-          })
+          if (config.customize.highlightKey && item[config.customize.highlightKey] == config.customize.highlightValue) {
+            header.forEach((x, index) => {
+              arr.push(`<span style="color:${config.customize.highlightColor}">${item[key[index]]}</span>`)
+            })
+          } else {
+            header.forEach((x, index) => {
+              arr.push(item[key[index]])
+            })
+          }
           dataList.push(arr)
         })
       } else {
@@ -87,9 +97,15 @@ export default {
         })
         data.data.forEach((item) => {
           const arr = []
-          header.forEach((x, index) => {
-            arr.push(item[key[index]])
-          })
+          if (config.customize.highlightKey && item[config.customize.highlightKey] == config.customize.highlightValue) {
+            header.forEach((x, index) => {
+              arr.push(`<span style="color:${config.customize.highlightColor}">${item[key[index]]}</span>`)
+            })
+          } else {
+            header.forEach((x, index) => {
+              arr.push(item[key[index]])
+            })
+          }
           dataList.push(arr)
         })
         if (config.customize.index) {

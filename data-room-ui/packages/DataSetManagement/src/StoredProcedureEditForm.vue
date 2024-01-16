@@ -14,12 +14,12 @@
                 {{ !isEdit ? '存储过程数据集详情' : dataForm.id ? '编辑存储过程数据集' : '新增存储过程数据集' }}
               </div>
               <div class="page-header-right">
-                <el-button
+                <!-- <el-button
                   class="bs-el-button-default"
                   @click="openNewWindow('https://www.yuque.com/chuinixiongkou/bigscreen/procedure_dataset')"
                 >
                   帮助
-                </el-button>
+                </el-button> -->
                 <el-button
                   v-if="isEdit"
                   type="primary"

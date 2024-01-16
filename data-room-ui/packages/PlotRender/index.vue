@@ -138,6 +138,12 @@ export default {
       this.chart.on('plot:click', (...args) => {
         this.linkage(formData)
       })
+      // element 添加点击事件， element 代表图形元素，关于图形元素，请查看：https://g2.antv.vision/zh/docs/manual/concepts/element
+      this.chart.on('element:click', (e) => {
+        if(e.data.data.asset_id) {
+          window.open(`/xh/monitor/add?type=monitor&id=${e.data.data.asset_id}&asset_id=${e.data.data.asset_id}&action=asset&prom=1`)
+        }
+      });
     },
     // 将config.setting的配置转化为option里的配置，这里之所以将转化的方法提出来，是因为在改变维度指标和样式的时候都需要转化
     transformSettingToOption (config, type) {

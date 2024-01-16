@@ -57,7 +57,10 @@ const customConfig = {
     indexHeader: '#',
     carousel: 'single',
     hoverPause: true,
-    columnConfig: []
+    columnConfig: [],
+    highlightKey: '',
+    highlightValue: '',
+    highlightColor: ''
   }
 }
 export const dataConfig = {

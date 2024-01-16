@@ -62,6 +62,24 @@
               :predefine="predefineThemeColors"
             />
           </el-form-item>
+          <el-form-item label="高亮字段">
+            <el-input
+              v-model="config.customize.highlightKey"
+              clearable
+            />
+          </el-form-item>
+          <el-form-item label="高亮条件值">
+            <el-input
+              v-model="config.customize.highlightValue"
+              clearable
+            />
+          </el-form-item>
+          <el-form-item label="高亮颜色">
+            <ColorPicker
+              v-model="config.customize.highlightColor"
+              :predefine="predefineThemeColors"
+            />
+          </el-form-item>
           <el-form-item
             label="轮播时间间隔"
             label-width="100px"
