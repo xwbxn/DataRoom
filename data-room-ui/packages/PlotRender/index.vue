@@ -21,6 +21,7 @@ import * as g2Plot from '@antv/g2plot'
 import plotList, { getCustomPlots } from '../G2Plots/plotList'
 import { settingToTheme } from 'data-room-ui/js/utils/themeFormatting'
 import _ from 'lodash'
+import moment from 'moment'
 
 export default {
   name: 'PlotCustomComponent',
@@ -118,7 +119,15 @@ export default {
         renderer: 'svg',
         // 仪表盘缩放状态下，点击准确
         supportCSSTransform: true,
-        ...config.option
+        ...config.option,
+        meta: {
+          time: {
+            tickCount: 7,
+            formatter: (val) => {
+              return moment.unix(_.toNumber(val)).format("YYYY-MM-DD hh:mm:ss");
+            },
+          },
+        },
       })
       this.chart.render()
       this.registerEvent()
